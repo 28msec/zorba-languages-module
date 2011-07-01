@@ -15,21 +15,26 @@
 :)
 
 (:~
- : This module provides XSLT transformation functionality. 
+ : <p>This module provides XSLT 1.0 transformation functionality.</p>
  :
- : See Mickael Kay's proposal:
- : http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html
+ : </p>For details on XSLT see 
+ : <a href="http://www.w3.org/TR/xslt">XSLT 1.0 specification</a>.</p>  
  :
- : Example:
- : import module namespace
- :     xslt = "http://www.zorba-xquery.com/modules/languages/xslt"; 
+ : <p>See <a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html">
+ :    Mickael Kay's proposal</a>.</p>
+ : 
  :
- : xslt:transform(doc("cat.xml"), doc("t1.xslt"))
+ : <p>Example:
+ : <pre class="brush: xquery;">
+ :   import module namespace
+ :       xslt = "http://www.zorba-xquery.com/modules/languages/xslt"; 
  :
+ :   xslt:transform(doc("cat.xml"), doc("t1.xslt"))
+ : </pre></p>
  :
  : @author Cezar Andrei
  : @library <a href="http://xmlsoft.org/XSLT/">libxslt Library</a>
- : @project data-processing/data-convertors
+ : @project external/programming languages
  :
  :)
 module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
