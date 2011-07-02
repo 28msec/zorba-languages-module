@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zorba:iterators
+  xmlns:zorba="http://www.zorba-xquery.com"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.zorba-xquery.com ../runtime.xsd">
+    
+<zorba:header>
+  <zorba:include form="Quoted">compiler/parser/parse_constants.h</zorba:include>
+  <zorba:fwd-decl ns="zorba">TypeManager</zorba:fwd-decl>
+</zorba:header>
+<zorba:source>
+  <zorba:include form="Quoted">types/typemanager.h</zorba:include>
+  <zorba:include form="Quoted">types/schema/schema.h</zorba:include>
+  <zorba:include form="Quoted">types/schema/validate.h</zorba:include>
+</zorba:source>
+
+
+<!--
+/*******************************************************************************
+********************************************************************************/
+-->
+<zorba:iterator name="ZorbaXsltTransformIterator" arity="nary">
+
+  <zorba:description author="Zorba Team">iterator backing the xslt:transform function</zorba:description>
+
+  <zorba:function>
+    <zorba:signature localname="transform" prefix="fn-zorba-schema">
+      <zorba:param>node()</zorba:param>
+      <zorba:param>node()</zorba:param>
+      <zorba:output>node()</zorba:output>
+    </zorba:signature>
+  </zorba:function>
+
+</zorba:iterator>
+
+</zorba:iterators>
