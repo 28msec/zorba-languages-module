@@ -17,7 +17,7 @@
 (:~
  : <p>This module provides XSLT 1.0 transformation functionality.</p>
  :
- : </p>For details on XSLT see 
+ : <p>For details on XSLT see 
  : <a href="http://www.w3.org/TR/xslt">XSLT 1.0 specification</a>.</p>  
  :
  : <p>See <a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html">
