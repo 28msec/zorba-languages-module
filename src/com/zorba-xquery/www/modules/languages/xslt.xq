@@ -39,6 +39,8 @@
  :)
 module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
 
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
 
 (:~
  :<p>Tranforms the $source by applying the XSLT stylesheet</p>
