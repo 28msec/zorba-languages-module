@@ -59,7 +59,7 @@ TransformFunction::evaluate(
   {
       std::stringstream lSs;
       lSs << "Wrong number of parameters, expecting two parameters.";
-      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT001");
+      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT000");
       throw USER_EXCEPTION( lQName, lSs.str());
   }
 
@@ -122,7 +122,7 @@ TransformFunction::evaluate(
   {
       std::stringstream lSs;
       lSs << "Libxslt error: " << resStr.c_str();
-      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT002");
+      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT001");
       throw USER_EXCEPTION( lQName, lSs.str());
   }
   
@@ -137,7 +137,7 @@ TransformFunction::evaluate(
   {
       std::stringstream lSs;
       lSs << "Cannot serialize error: " << e;
-      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT003");
+      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT002");
       throw USER_EXCEPTION( lQName, lSs.str());
   }
 }

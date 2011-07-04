@@ -20,16 +20,63 @@
  : <p>For details on XSLT see 
  : <a href="http://www.w3.org/TR/xslt">XSLT 1.0 specification</a>.</p>  
  :
- : <p>See <a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html">
+ : <p>This module implements the invoking of an XSLT transformation from XQuery
+ : described in <a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html">
  :    Mickael Kay's proposal</a>.</p>
  : 
  :
  : <p>Example:
  : <pre class="brush: xquery;">
- :   import module namespace
- :       xslt = "http://www.zorba-xquery.com/modules/languages/xslt"; 
- :
- :   xslt:transform(doc("cat.xml"), doc("t1.xslt"))
+ : import module namespace
+ :        xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
+ : 
+ : let $source := 
+ :     &lt;catalog>
+ :         &lt;cd>
+ :                 &lt;title>Empire Burlesque&lt;/title>
+ :                 &lt;artist>Bob Dylan&lt;/artist>
+ :                 &lt;country>USA&lt;/country>
+ :                 &lt;company>Columbia&lt;/company>
+ :                 &lt;price>10.90&lt;/price>
+ :                 &lt;year>1985&lt;/year>
+ :         &lt;/cd>
+ :         &lt;cd>
+ :                 &lt;title>Hide your heart&lt;/title>
+ :                 &lt;artist>Bonnie Tyler&lt;/artist>
+ :                 &lt;country>UK&lt;/country>
+ :                 &lt;company>CBS Records&lt;/company>
+ :                 &lt;price>9.90&lt;/price>
+ :                 &lt;year>1988&lt;/year>
+ :         &lt;/cd>
+ :     &lt;/catalog>
+ : 
+ : let $stylesheet := 
+ :   &lt;xsl:stylesheet version="1.0" 
+ :       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+ : 
+ :     &lt;xsl:template match="/">
+ :       &lt;html>
+ :       &lt;body>
+ :       &lt;h2>Music Collection&lt;/h2>
+ :         &lt;table border="1">
+ :           &lt;tr bgcolor="lightblue">
+ :             &lt;th>Title&lt;/th>
+ :             &lt;th>Artist&lt;/th>
+ :           &lt;/tr>
+ :           &lt;xsl:for-each select="catalog/cd">
+ :           &lt;tr>
+ :             &lt;td>&lt;xsl:value-of select="title"/>&lt;/td>
+ :             &lt;td>&lt;xsl:value-of select="artist"/>&lt;/td>
+ :           &lt;/tr>
+ :           &lt;/xsl:for-each>
+ :         &lt;/table>
+ :       &lt;/body>
+ :       &lt;/html>
+ :     &lt;/xsl:template>
+ :   &lt;/xsl:stylesheet>
+ : 
+ : return
+ :   xslt:transform( $source, $stylesheet)
  : </pre></p>
  :
  : @author Cezar Andrei
@@ -42,12 +89,38 @@ module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
 declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
 declare option ver:module-version "1.0";
 
+
 (:~
- :<p>Tranforms the $source by applying the XSLT stylesheet</p>
+ : Errors namespace URI.
+:)
+declare variable $xslt:xsltNS as xs:string := "http://www.zorba-xquery.com/modules/languages/xslt";
+
+
+(:~
+ : Error code for invalid XSLT stylesheet.<br/>
+ : Possible error messages:<br/>
+ : * "Libxslt error"<br/>
+:)
+declare variable $xslt:XSLT001 as xs:QName := fn:QName($xslt:xsltNS, "html:XSLT001");
+
+(:~
+ : Error code if result can not be imported.<br/>
+ : Possible error messages:<br/>
+ : * "Cannot serialize error"<br/>
+:)
+declare variable $xslt:XSLT002 as xs:QName := fn:QName($xslt:xsltNS, "html:XSLT002");
+
+
+(:~
+ :<p>Invokes an XSLT transformation.</p>
  :
- : @param $source the input document
- : @param $stylesheet the XSLT stylesheet
- : @return the result
+ : @param $source the input document to the transformation
+ : @param $stylesheet the XSLT stylesheet module
+ : @return the result tree produced by the transformation
+ : @error  XSLT001 if wrong parameters
+ : @error  XSLT002 if $stylesheet is not a valid XSLT stylesheet
+ : @error  XSLT003 if result can not be imported 
+ : @example test_xslt/Queries/languages/xslt/xslt1.xq
  :)
 declare function xslt:transform (
   $source as node(),
