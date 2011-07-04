@@ -118,9 +118,8 @@ declare variable $xslt:XSLT002 as xs:QName := fn:QName($xslt:xsltNS, "html:XSLT0
  : @param $source the input document to the transformation
  : @param $stylesheet the XSLT stylesheet module
  : @return the result tree produced by the transformation
- : @error  XSLT001 if wrong parameters
- : @error  XSLT002 if $stylesheet is not a valid XSLT stylesheet
- : @error  XSLT003 if result can not be imported 
+ : @error  XSLT001 if $stylesheet is not a valid XSLT stylesheet
+ : @error  XSLT002 if result can not be imported 
  : @example test_xslt/Queries/languages/xslt/xslt1.xq
  :)
 declare function xslt:transform (
