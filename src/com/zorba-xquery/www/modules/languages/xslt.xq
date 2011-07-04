@@ -23,7 +23,7 @@
  :
  : <p>This module implements the invoking of an XSLT transformation from XQuery
  : described in <a href="http://lists.w3.org/Archives/Member/w3c-xsl-wg/2008Apr/0052.html">
- :    Mickael Kay's proposal</a>.</p>
+ :    Michael Kay's proposal</a>.</p>
  : 
  :
  : <p>Example:
