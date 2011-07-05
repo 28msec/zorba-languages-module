@@ -15,8 +15,7 @@
 :)
 
 (:~
- : This module provides XSLT 1.0 transformation functionality.
- : For details on XSLT see <a href="http://www.w3.org/TR/xslt">XSLT 1.0 specification</a>.  
+ : This module provides XSLT 1.0 transformation functionality.  
  :
  : <p>For details on XSLT see 
  : <a href="http://www.w3.org/TR/xslt">XSLT 1.0 specification</a>.</p>  
@@ -82,7 +81,7 @@
  :
  : @author Cezar Andrei
  : @library <a href="http://xmlsoft.org/XSLT/">libxslt Library</a>
- : @project external/programming languages
+ : @project programming languages
  :
  :)
 module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
