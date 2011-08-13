@@ -91,36 +91,16 @@ module namespace xslt = "http://www.zorba-xquery.com/modules/languages/xslt";
 declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
 declare option ver:module-version "1.0";
 
-
-(:~
- : Errors namespace URI.
-:)
-declare variable $xslt:xsltNS as xs:string := "http://www.zorba-xquery.com/modules/languages/xslt";
-
-
-(:~
- : Error code for invalid XSLT stylesheet.<br/>
- : Possible error messages:<br/>
- : * "Libxslt error"<br/>
-:)
-declare variable $xslt:XSLT001 as xs:QName := fn:QName($xslt:xsltNS, "html:XSLT001");
-
-(:~
- : Error code if result can not be imported.<br/>
- : Possible error messages:<br/>
- : * "Cannot serialize error"<br/>
-:)
-declare variable $xslt:XSLT002 as xs:QName := fn:QName($xslt:xsltNS, "html:XSLT002");
-
-
 (:~
  :<p>Invokes an XSLT transformation.</p>
  :
  : @param $source the input document to the transformation
  : @param $stylesheet the XSLT stylesheet module
  : @return the result tree produced by the transformation
- : @error  XSLT001 if $stylesheet is not a valid XSLT stylesheet
- : @error  XSLT002 if result can not be imported 
+ :
+ : @error  xslt:XSLT001 if $stylesheet is not a valid XSLT stylesheet
+ : @error  xslt:XSLT002 if result can not be imported 
+ :
  : @example test_xslt/Queries/languages/xslt/xslt1.xq
  :)
 declare function xslt:transform (

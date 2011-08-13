@@ -22,6 +22,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <cassert>
 
 #include <zorba/serializer.h>
 #include <zorba/user_exception.h>
@@ -55,13 +56,7 @@ TransformFunction::evaluate(
 {
   Item lSourceItem, lStylesheetItem;
 
-  if (aArgs.size() != 2)
-  {
-      std::stringstream lSs;
-      lSs << "Wrong number of parameters, expecting two parameters.";
-      Item lQName = XsltModule::getItemFactory()->createQName(this->getURI(), "XSLT000");
-      throw USER_EXCEPTION( lQName, lSs.str());
-  }
+  assert(aArgs.size() == 2);
 
   Iterator_t lArg0Iter = aArgs[0]->getIterator();
   lArg0Iter->open();
