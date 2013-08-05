@@ -123,7 +123,7 @@ TransformFunction::evaluate(
   
   std::istringstream iss( resStr.c_str() ); 
   
-  XmlDataManager* lDM = Zorba::getInstance(0)->getXmlDataManager();
+  XmlDataManager_t lDM = Zorba::getInstance(0)->getXmlDataManager();
   try
   {
     return ItemSequence_t(new SingletonItemSequence(lDM->parseXML(iss)));   
